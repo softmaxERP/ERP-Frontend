@@ -29,7 +29,7 @@
 					@click="!!pathField && !!item[pathField] ? handleClick(item, index) : undefined">
 					<template #title>
 						<svg-icon class="menu-icon" v-if="!!iconField" :icon-name="item[iconField]" />
-						<span class="menu-label" v-if="!!labelField">{{ item[labelField] }}</span>
+						<el-text class="menu-label" v-if="!!labelField" truncated>{{ item[labelField] }}</el-text>
 					</template>
 					<template v-for="(subItem, subIndex) in item[subMenuField]" :key="subItem._id">
 						<el-menu-item
@@ -38,7 +38,7 @@
 							v-can.any="!!roleField && !!subItem[subMenuPrefix ? `${subMenuPrefix}${roleField}` : roleField] ? subItem[subMenuPrefix ? `${subMenuPrefix}${roleField}` : roleField] : ['user']"
 							@click="handleClick(subItem, subIndex, true)">
 							<svg-icon class="menu-icon" v-if="!!iconField" :icon-name="subItem[subMenuPrefix ? `${subMenuPrefix}${iconField}` : iconField]" />
-							<span class="menu-label" v-if="!!labelField">{{ subItem[subMenuPrefix ? `${subMenuPrefix}${labelField}` : labelField] }}</span>
+							<el-text class="menu-label" v-if="!!labelField" truncated>{{ subItem[subMenuPrefix ? `${subMenuPrefix}${labelField}` : labelField] }}</el-text>
 						</el-menu-item>
 					</template>
 				</el-sub-menu>
@@ -49,7 +49,7 @@
 					v-can.any="!!roleField && !!item[roleField] ? item[roleField] : ['user']"
 					@click="!!pathField && !!item[pathField] ? handleClick(item, index) : undefined">
 					<svg-icon class="menu-icon" v-if="!!iconField" :icon-name="item[iconField]" />
-					<span class="menu-label" v-if="!!labelField">{{ item[labelField] }}</span>
+					<el-text class="menu-label" v-if="!!labelField" truncated>{{ item[labelField] }}</el-text>
 				</el-menu-item>
 			</template>
 		</el-menu>
