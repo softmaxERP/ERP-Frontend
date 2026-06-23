@@ -34,11 +34,11 @@
 					<template v-for="(subItem, subIndex) in item[subMenuField]" :key="subItem._id">
 						<el-menu-item
 							class="sub-menu-item"
-							:index="!!pathField && !!subMenuPrefix && !!subItem[`${subMenuPrefix}${pathField}`] ? subItem[`${subMenuPrefix}${pathField}`] : index"
-							v-can.any="!!roleField && !!subMenuPrefix && !!subItem[`${subMenuPrefix}${roleField}`] ? subItem[`${subMenuPrefix}${roleField}`] : ['user']"
-							@click="!!pathField && !!subMenuPrefix && !!subItem[`${subMenuPrefix}${pathField}`] ? handleClick(subItem, subIndex, true) : undefined">
-							<svg-icon class="menu-icon" v-if="!!iconField && !!subMenuPrefix" :icon-name="subItem[`${subMenuPrefix}${iconField}`]" />
-							<span class="menu-label" v-if="!!labelField && !!subMenuPrefix">{{ subItem[`${subMenuPrefix}${labelField}`] }}</span>
+							:index="!!pathField && !!subItem[subMenuPrefix ? `${subMenuPrefix}${pathField}` : pathField] ? subItem[subMenuPrefix ? `${subMenuPrefix}${pathField}` : pathField] : String(subIndex)"
+							v-can.any="!!roleField && !!subItem[subMenuPrefix ? `${subMenuPrefix}${roleField}` : roleField] ? subItem[subMenuPrefix ? `${subMenuPrefix}${roleField}` : roleField] : ['user']"
+							@click="handleClick(subItem, subIndex, true)">
+							<svg-icon class="menu-icon" v-if="!!iconField" :icon-name="subItem[subMenuPrefix ? `${subMenuPrefix}${iconField}` : iconField]" />
+							<span class="menu-label" v-if="!!labelField">{{ subItem[subMenuPrefix ? `${subMenuPrefix}${labelField}` : labelField] }}</span>
 						</el-menu-item>
 					</template>
 				</el-sub-menu>
